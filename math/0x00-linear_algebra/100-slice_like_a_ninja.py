@@ -18,4 +18,4 @@ def np_slice(matrix, axes={}):
         else:
             slice_list.append(slice(None))
 
-    return new_matrix[slice_list]
+    return new_matrix[tuple(slice_list)]
