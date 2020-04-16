@@ -19,9 +19,7 @@ def add_matrices(mat1, mat2):
             else:
                 return None
     else:
-        inner_list = []
         for i in range(len(mat1)):
-            inner_list.append(mat1[i] + mat2[i])
-        new_matrix.append(inner_list)
+            new_matrix.append(mat1[i] + mat2[i])
 
     return new_matrix
