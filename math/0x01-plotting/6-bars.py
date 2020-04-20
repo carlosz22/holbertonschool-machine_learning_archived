@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Stacked bar chart"""
 import numpy as np
 import matplotlib.pyplot as plt
 

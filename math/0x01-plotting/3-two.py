@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Two lines plot"""
 import numpy as np
 import matplotlib.pyplot as plt
 

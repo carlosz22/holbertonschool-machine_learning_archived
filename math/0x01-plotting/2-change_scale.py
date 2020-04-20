@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Line plot with log scale"""
 import numpy as np
 import matplotlib.pyplot as plt
 

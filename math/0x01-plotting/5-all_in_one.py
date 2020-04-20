@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Multiple plots in a figure"""
 import numpy as np
 import matplotlib.pyplot as plt
 
