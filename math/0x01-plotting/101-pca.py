@@ -4,8 +4,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
  
-data = np.load("data.npy")
-labels = np.load("labels.npy")
+lib = np.load("pca.npz")
+data = lib["data"]
+labels = lib["labels"]
 
 data_means = np.mean(data, axis=0)
 norm_data = data - data_means
@@ -16,12 +17,14 @@ pca_data = np.matmul(norm_data, Vh[:3].T)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 cmplasma = plt.get_cmap("plasma")
-colors={0: 'red', 1: 'green', 2: 'blue'}
 
-for i in range(len(pca_data)):
-    ax.scatter(pca_data[i, 0], pca_data[i, 1],
-     pca_data[i, 2], label=labels[i], c=colors.get(labels[i], 'white'),
-      cmap=cmplasma)
+ax.scatter(pca_data[:, 0], pca_data[:, 1],
+     pca_data[:, 2], label=labels, c=labels, 
+     cmap=cmplasma)
+
+ax.set_xlabel('U1')
+ax.set_ylabel('U2')
+ax.set_zlabel('U3')
 
 plt.title('PCA of Iris Dataset')
 plt.show()
