@@ -5,7 +5,7 @@
 def summation_i_squared(n):
     """Summation done recursively"""
 
-    if (type(n) is not int):
+    if (type(n) is not int or n < 1):
         return None
 
     if (n == 1):
