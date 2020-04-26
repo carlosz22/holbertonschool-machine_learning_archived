@@ -9,11 +9,10 @@ def poly_integral(poly, C=0):
             or type(C) is not int):
         return None
 
-    integrate_coef = [poly[i] / (i + 1) for i in range(len(poly))]
-
-    if integrate_coef.sum() == 0:
+    if poly == [0]:
         return [C]
 
+    integrate_coef = [poly[i] / (i + 1) for i in range(len(poly))]
     integrate_coef.insert(0, C)
     integrate_coef_fixed = [int(i) if i % 1 == 0 else i
                             for i in integrate_coef]
