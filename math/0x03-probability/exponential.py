@@ -20,3 +20,14 @@ class Exponential:
                 raise ValueError('data must contain multiple values')
             else:
                 self.lambtha = float(len(data) / sum(data))
+
+    def pdf(self, x):
+        """Calculates the probability of x happening"""
+
+        if x < 0:
+            return 0
+
+        e_cons = 2.7182818285
+        pdf = self.lambtha * e_cons ** (-(self.lambtha) * x)
+
+        return pdf
