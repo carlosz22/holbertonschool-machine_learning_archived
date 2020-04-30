@@ -28,3 +28,28 @@ class Binomial:
                 self.p = - (variance / mean) + 1
                 self.n = round(mean / self.p)
                 self.p = mean / self.n
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes"""
+
+        if type(k) is not int:
+            int(k)
+
+        if k < 0:
+            return 0
+
+        factorial_n = 1
+        for f_n in range(1, self.n + 1):
+            factorial_n *= f_n
+
+        factorial_k = 1
+        for f_k in range(1, k + 1):
+            factorial_k *= f_k
+
+        factorial_n_k = 1
+        for f_n_k in range(1, (self.n - k) + 1):
+            factorial_n_k *= f_n_k
+
+        factorial_term = (factorial_n / (factorial_k * factorial_n_k))
+        pmf = factorial_term * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+        return pmf
