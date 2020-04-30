@@ -39,16 +39,16 @@ class Binomial:
             return 0
 
         factorial_n = 1
-        for f_n in range(1, self.n + 1):
-            factorial_n *= f_n
+        for i in range(1, self.n + 1):
+            factorial_n *= i
 
         factorial_k = 1
-        for f_k in range(1, k + 1):
-            factorial_k *= f_k
+        for i in range(1, k + 1):
+            factorial_k *= i
 
         factorial_n_k = 1
-        for f_n_k in range(1, (self.n - k) + 1):
-            factorial_n_k *= f_n_k
+        for i in range(1, (self.n - k) + 1):
+            factorial_n_k *= i
 
         factorial_term = (factorial_n / (factorial_k * factorial_n_k))
         pmf = factorial_term * (self.p ** k) * ((1 - self.p) ** (self.n - k))
