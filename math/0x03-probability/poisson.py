@@ -35,5 +35,26 @@ class Poisson:
             factorial = factorial * k
 
         e_cons = 2.7182818285
-        probability = (e_cons ** -(self.lambtha) * self.lambtha ** k)/factorial
+        pmf = (e_cons ** -(self.lambtha) * self.lambtha ** k)/factorial
         return probability
+
+    def cdf(self, k):
+        """Calculates the cumulative distribution probability for k"""
+
+        if type(k) is not int:
+            k = int(k)
+
+        if k < 0:
+            return 0
+
+        e_cons = 2.7182818285
+
+        inner_sum = 0
+        factorial_i = 1
+        for i in range(k + 1):
+            if i > 0:
+                factorial_i *= i
+            inner_sum += (self.lambtha ** i) / factorial_i
+
+        cdf = e_cons ** -(self.lambtha) * inner_sum
+        return cdf
