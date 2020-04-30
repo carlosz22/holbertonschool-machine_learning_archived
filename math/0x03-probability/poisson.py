@@ -36,7 +36,7 @@ class Poisson:
 
         e_cons = 2.7182818285
         pmf = (e_cons ** -(self.lambtha) * self.lambtha ** k)/factorial
-        return probability
+        return pmf
 
     def cdf(self, k):
         """Calculates the cumulative distribution probability for k"""
