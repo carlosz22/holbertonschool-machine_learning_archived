@@ -39,6 +39,6 @@ class Exponential:
             return 0
 
         e_cons = 2.7182818285
-        cdf = 1 - (self.lambtha * e_cons ** (-(self.lambtha) * x))
+        cdf = 1 - (e_cons ** (-(self.lambtha) * x))
 
         return cdf
