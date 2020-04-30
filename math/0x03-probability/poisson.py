@@ -20,3 +20,20 @@ class Poisson:
                 raise ValueError('data must contain multiple values')
             else:
                 self.lambtha = float(sum(data) / len(data))
+
+    def pmf(self, k):
+        """Calculates the probability of k events happening"""
+
+        if type(k) is not int:
+            k = int(k)
+
+        if k < 0:
+            return 0
+
+        factorial = 1
+        for k in range(1, k + 1):
+            factorial = factorial * k
+
+        e_cons = 2.7182818285
+        probability = (e_cons ** -(self.lambtha) * self.lambtha ** k)/factorial
+        return probability
