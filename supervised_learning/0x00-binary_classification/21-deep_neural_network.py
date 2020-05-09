@@ -80,14 +80,18 @@ class DeepNeuralNetwork:
     def gradient_descent(self, Y, cache, alpha=0.05):
         """Performs gradient descent"""
         m = Y.shape[1]
-        dZ = self.__cache['A' + str(self.__L)] - Y
-        for i in range(0, self.__L, -1):
+        # dZ = cache['A' + str(self.__L)] - Y
+        for i in reversed(range(self.__L)):
             lay = str(i + 1)
             lay_min_1 = str(i)
-            if i != (self.__L - 1):
-                dZ = dA * (cache(['A' + lay]) * (1 - cache['A' + lay]))
+            if i == (self.__L - 1):
+                dZ = cache['A' + str(self.__L)] - Y
+            else:
+                dZ = dA * (cache['A' + lay]) * (1 - cache['A' + lay])
             dW = 1/m * np.matmul(dZ, cache['A' + lay_min_1].T)
             db = 1/m * np.sum(dZ, axis=1, keepdims=True)
             dA = np.matmul(self.__weights['W' + lay].T, dZ)
-            self.__weights['W' + lay] = self.__weights['W' + lay] - (alpha * dW)
-            self.__weights['b' + lay] = self.__weights['b' + lay] - (alpha * db)
+            self.__weights['W' + lay] = self.__weights['W' + lay] - \
+                (alpha * dW)
+            self.__weights['b' + lay] = self.__weights['b' + lay] - \
+                (alpha * db)
