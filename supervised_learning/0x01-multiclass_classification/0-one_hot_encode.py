@@ -8,7 +8,7 @@ def one_hot_encode(Y, classes):
     """Performs one-hot encoding"""
     if type(Y) is not np.ndarray or len(Y) < 1:
         return None
-    if (type(classes) is not int or classes < 1 or classes <= np.amax(Y)):
+    if (type(classes) is not int or classes < 1 or classes < np.amax(Y)):
         return None
 
     m = len(Y)
