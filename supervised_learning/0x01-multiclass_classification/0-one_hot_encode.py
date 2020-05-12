@@ -10,5 +10,5 @@ def one_hot_encode(Y, classes):
         return None
 
     hot_encoded_matrix = np.zeros((Y.size, classes))
-    hot_encoded_matrix[np.arange(Y.size), Y] = 1
+    hot_encoded_matrix[Y, np.arange(Y.size)] = 1
     return hot_encoded_matrix
