@@ -9,6 +9,7 @@ def one_hot_encode(Y, classes):
     if classes < 1:
         return None
 
-    hot_encoded_matrix = np.zeros((Y.size, classes))
+    hot_encoded_matrix = np.zeros((classes, Y.size))
     hot_encoded_matrix[Y, np.arange(Y.size)] = 1
+    print(hot_encoded_matrix.shape)
     return hot_encoded_matrix
