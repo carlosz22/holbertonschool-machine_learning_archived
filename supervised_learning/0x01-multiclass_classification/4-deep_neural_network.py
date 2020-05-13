@@ -55,6 +55,11 @@ class DeepNeuralNetwork:
         """weights getter"""
         return self.__weights
 
+    @property
+    def activation(self):
+        """activation getter"""
+        return self.__activation
+
     def forward_prop(self, X):
         """Calculates forward propagation"""
         self.__cache['A0'] = X
