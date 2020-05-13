@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Defines a Deep Neural Network for binary classification"""
+"""Defines a Deep Neural Network for multiclass classification"""
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
