@@ -71,8 +71,7 @@ class DeepNeuralNetwork:
                 if self.__activation == 'sig':
                     self.__cache['A' + lay] = 1/(1 + np.exp(-Zl))
                 elif self.__activation == 'tanh':
-                    self.__cache['A' + lay] == (np.exp(Zl) - np.exp(-Zl)) / \
-                        (np.exp(Zl) + np.exp(-Zl))
+                    self.__cache['A' + lay] == np.tanh(Zl)
 
         return self.__cache['A' + str(self.__L)], self.__cache
 
@@ -104,7 +103,7 @@ class DeepNeuralNetwork:
                 if self.__activation == 'sig':
                     dZ = dA * (cache['A' + lay]) * (1 - cache['A' + lay])
                 elif self.__activation == 'tanh':
-                    dZ = dA * (1 - np.tanh(cache['A' + lay]) ** 2)
+                    dZ = dA * (1 - cache['A' + lay] ** 2)
             dW = 1/m * np.matmul(dZ, cache['A' + lay_min_1].T)
             db = 1/m * np.sum(dZ, axis=1, keepdims=True)
             dA = np.matmul(self.__weights['W' + lay].T, dZ)
