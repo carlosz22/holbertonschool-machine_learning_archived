@@ -140,7 +140,7 @@ class DeepNeuralNetwork:
         self.evaluate(X, Y)
         for i in range(iterations + 1):
             self.forward_prop(X)
-            _, cost = self.evaluate(X, Y)
+            y_hat, cost = self.evaluate(X, Y)
             if i % step == 0 or i == iterations:
                 cost_data.append(cost)
                 step_data.append(i)
