@@ -76,7 +76,7 @@ class DeepNeuralNetwork:
                 if self.__activation == 'sig':
                     self.__cache['A' + lay] = 1/(1 + np.exp(-Zl))
                 elif self.__activation == 'tanh':
-                    self.__cache['A' + lay] == np.tanh(Zl)
+                    self.__cache['A' + lay] = np.tanh(Zl)
 
         return self.__cache['A' + str(self.__L)], self.__cache
 
@@ -140,7 +140,7 @@ class DeepNeuralNetwork:
         self.evaluate(X, Y)
         for i in range(iterations + 1):
             self.forward_prop(X)
-            y_hat, cost = self.evaluate(X, Y)
+            _, cost = self.evaluate(X, Y)
             if i % step == 0 or i == iterations:
                 cost_data.append(cost)
                 step_data.append(i)
