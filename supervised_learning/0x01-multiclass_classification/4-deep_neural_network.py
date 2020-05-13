@@ -107,9 +107,9 @@ class DeepNeuralNetwork:
                 if self.__activation == 'sig':
                     dZ = dA * (cache['A' + lay]) * (1 - cache['A' + lay])
                 elif self.__activation == 'tanh':
-                    dZ = dA * (1 - cache['A' + lay] ** 2)
-            dW = 1/m * np.matmul(dZ, cache['A' + lay_min_1].T)
-            db = 1/m * np.sum(dZ, axis=1, keepdims=True)
+                    dZ = dA * (1 - (cache['A' + lay] ** 2))
+            dW = (np.matmul(dZ, cache['A' + lay_min_1].T)) / m
+            db = (np.sum(dZ, axis=1, keepdims=True)) / m
             dA = np.matmul(self.__weights['W' + lay].T, dZ)
             self.__weights['W' + lay] = self.__weights['W' + lay] - \
                 (alpha * dW)
@@ -140,7 +140,7 @@ class DeepNeuralNetwork:
         self.evaluate(X, Y)
         for i in range(iterations + 1):
             self.forward_prop(X)
-            y_hat, cost = self.evaluate(X, Y)
+            _, cost = self.evaluate(X, Y)
             if i % step == 0 or i == iterations:
                 cost_data.append(cost)
                 step_data.append(i)
