@@ -19,7 +19,7 @@ class DeepNeuralNetwork:
         if type(layers) is not list or len(layers) < 1:
             raise TypeError('layers must be a list of positive integers')
 
-        if activation not in ['sig', 'tanh']:
+        if (activation != 'sig' or activation != 'tanh'):
             raise ValueError("activation must be 'sig' or 'tanh'")
 
         self.__L = len(layers)
