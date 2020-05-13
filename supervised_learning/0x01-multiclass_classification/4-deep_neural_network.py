@@ -19,7 +19,7 @@ class DeepNeuralNetwork:
         if type(layers) is not list or len(layers) < 1:
             raise TypeError('layers must be a list of positive integers')
 
-        if activation not in ['sig', 'tanh']:
+        if (activation != 'sig' and activation != 'tanh'):
             raise ValueError("activation must be 'sig' or 'tanh'")
 
         self.__L = len(layers)
@@ -82,8 +82,7 @@ class DeepNeuralNetwork:
 
     def cost(self, Y, A):
         """Calculates the cost"""
-        m = Y.shape[1]
-        cost = -1/m * np.sum(Y * np.log(A))
+        cost = -(np.sum(Y * np.log(A)) / Y.shape[1])
         return cost
 
     def evaluate(self, X, Y):
@@ -139,14 +138,16 @@ class DeepNeuralNetwork:
         cost_data = []
         step_data = []
         self.evaluate(X, Y)
-        for i in range(iterations):
-            self.gradient_descent(Y, self.__cache, alpha)
+        for i in range(iterations + 1):
+            self.forward_prop(X)
             y_hat, cost = self.evaluate(X, Y)
             if i % step == 0 or i == iterations:
                 cost_data.append(cost)
                 step_data.append(i)
                 if verbose is True:
                     print("Cost after {} iterations: {}". format(i, cost))
+            if i < iterations:
+                self.gradient_descent(Y, self.__cache, alpha)
 
         if graph is True:
             plt.plot(step_data, cost_data, 'b-')
@@ -155,7 +156,7 @@ class DeepNeuralNetwork:
             plt.ylabel('cost')
             plt.show()
 
-        return y_hat, cost
+        return self.evaluate(X, Y)
 
     def save(self, filename):
         """Save object using pickle dump"""
