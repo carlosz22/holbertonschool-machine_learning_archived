@@ -13,7 +13,7 @@ def calculate_accuracy(y, y_pred):
     y_decoded = tf.argmax(y, 1)
     y_pred_decoded = tf.argmax(y_pred, 1)
 
-    equal = tf.equal(y_decoded, y_pred_decoded)
+    equal = tf.equal(y_pred_decoded, y_decoded)
 
     accuracy = tf.reduce_mean(tf.cast(equal, tf.float32))
     return accuracy
