@@ -36,11 +36,11 @@ def train(X_train, Y_train, X_valid, Y_valid,
 
     accuracy = calculate_accuracy(y, y_pred)
     loss = calculate_loss(y, y_pred)
-    train = create_train_op(loss, alpha)
+    train_op = create_train_op(loss, alpha)
 
     tf.add_to_collection('accuracy', accuracy)
     tf.add_to_collection('loss', loss)
-    tf.add_to_collection('train', train)
+    tf.add_to_collection('train_op', train)
 
     init = tf.global_variables_initializer()
     saver = tf.train.Saver()
@@ -67,6 +67,6 @@ def train(X_train, Y_train, X_valid, Y_valid,
                 print("\tValidation Accuracy: {}".format(accuracy_valid))
 
             if i < iterations:
-                sess.run(train, feed_dict={x: X_train, y: Y_train})
+                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
 
         return saver.save(sess, save_path)
