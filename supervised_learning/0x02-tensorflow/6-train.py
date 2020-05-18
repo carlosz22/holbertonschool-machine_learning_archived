@@ -51,14 +51,14 @@ def train(X_train, Y_train, X_valid, Y_valid,
 
         for i in range(iterations + 1):
 
-            accuracy_train = sess.run(accuracy,
-                                      feed_dict={x: X_train, y: Y_train})
             loss_train = sess.run(loss,
                                   feed_dict={x: X_train, y: Y_train})
+            accuracy_train = sess.run(accuracy,
+                                      feed_dict={x: X_train, y: Y_train})
 
+            loss_valid = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
             accuracy_valid = sess.run(accuracy,
                                       feed_dict={x: X_valid, y: Y_valid})
-            loss_valid = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
 
             if i % 100 == 0 or i == iterations:
                 print("After {} iterations:".format(i))
